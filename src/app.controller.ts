@@ -14,7 +14,7 @@ import { request } from 'express';
 export class AppController{
   @Get()
   getusers(){
-    return{name: 'Plaston', surname: 'Zanda'};
+    return{productName: 'Hotdog', productPrice: 'K1500'};
   }
 
   @Post()

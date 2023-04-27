@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
+  UserService: any;
 
   constructor(
     @InjectRepository(User)
@@ -23,18 +24,18 @@ export class UserService {
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.UserService.findAll(); //`This action returns all user`;
   }
 
   findOne(id: number) {
     return `This action returns a #${id} user`;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(updateUserDto: UpdateUserDto, userId: number) {
+    return {body: updateUserDto, userId};
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(userId: number) {
+    return {userId};
   }
 }
