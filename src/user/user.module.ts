@@ -5,9 +5,11 @@ import { UserController } from './user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm/dist';
 
 @Module({
-  // controllers: [UserController],
-  // providers: [UserService]
+  //controllers: [UserController],
+  //providers: [UserService]
 
 imports: [TypeOrmModule.forFeature([User])],
+providers: [UserService],
+controllers: [UserController],
 })
 export class UserModule {}

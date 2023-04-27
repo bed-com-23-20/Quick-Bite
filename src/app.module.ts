@@ -14,7 +14,7 @@ import { Entity } from 'typeorm';
     username: 'root',
     password: '',
     database: 'quickbitefoods',
-    entities: ['dist/**/*.entinty.js'],
+    entities: [User],
     synchronize: true,
 
   }),UserModule],

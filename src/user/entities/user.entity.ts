@@ -11,4 +11,10 @@ export class User {
     @Column()
     productPrice: string;
 
+    @Column()
+    available: string;
+
+    @Column()
+    expireDate: Date;
+
 }
