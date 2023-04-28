@@ -7,8 +7,9 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  UserService: any;
-  usersRepository: any;
+ 
+  // UserService: any;
+  // usersRepository: any;
 
   constructor(
     @InjectRepository(User)
@@ -16,7 +17,7 @@ export class UserService {
 
   ){}
 
-  get():Promise<User[]>{
+  get():Promise<User[]>{ 
     return this.userRepository.find(); 
   }
 
@@ -24,9 +25,9 @@ export class UserService {
     return this.userRepository.save(createUserDto);
   }
 
-  findAll() {
-    return this.UserService.findAll(); //`This action returns all user`;
-  }
+  // findAll() {
+  //   return this.UserService.findAll(); //`This action returns all user`;
+  // }
 
   // findOne(userId: number){
   //   return this.userRepository.findOne({where:{id: userId}});  
@@ -50,7 +51,8 @@ export class UserService {
   show(userId: number){
     return this.userRepository.findOne({where: {id : userId}});
   }
-  Deleting
+  
+  //Deleting
   delete(userId: number){
     return this.userRepository.delete(userId);
   }
