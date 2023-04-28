@@ -21,9 +21,9 @@ export class UserController {
   getUsers(){
     return this.userService.get();
   }
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
-  }
+  // findOne(@Param('id') id: number) {
+  //   return this.userService.findOne(+id);
+  // }
 
   @Patch('/:userId')
   update(
@@ -33,8 +33,8 @@ export class UserController {
     return this.userService.update(updateUserDto, userId);
 }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.userService.remove(+id);
+  // }
 }
