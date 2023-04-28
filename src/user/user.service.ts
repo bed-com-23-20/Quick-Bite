@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Param } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -54,6 +54,13 @@ export class UserService {
   
   //Deleting
   delete(userId: number){
+    console.log("Deleted..");
     return this.userRepository.delete(userId);
+    
   }
+
+  // getOne(@Param('userId')userId: number):Promise<User>{ 
+  //   return this.userRepository.findOneById(userId); 
+  // }
+
 }
