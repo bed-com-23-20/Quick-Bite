@@ -1,55 +1,41 @@
-import { Injectable, Param } from '@nestjs/common';
+import { Injectable, Param ,Body} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { Account } from './entities/accountEntity';
+import { AccountDto } from './dto/account.dto';
+import { Login } from './dto/login.dto';
 
 @Injectable()
 export class UserService {
- 
-  // UserService: any;
-  // usersRepository: any;
-
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-
+    @InjectRepository(Account)
+    private accountRepository: Repository<Account>,
   ){}
 
+storeFood(@Body() createUserDto: CreateUserDto) {
+  return this.userRepository.save(createUserDto);
+}
   get():Promise<User[]>{ 
     return this.userRepository.find(); 
   }
-
-  create(createUserDto: CreateUserDto) {
-    return this.userRepository.save(createUserDto);
-  }
-
-  // findAll() {
-  //   return this.UserService.findAll(); //`This action returns all user`;
-  // }
-
-  // findOne(userId: number){
-  //   return this.userRepository.findOne({where:{id: userId}});  
-  // }
-
-  // findOne(id: number): Promise<User[]> {
-  //   return this.usersRepository.findOneBy({ id });
-  // }
-
+  
+ 
+  /*findOne(userId: number): Promise<User> {
+    return this.userRepository.findOneById( userId );
+  }*/
 
   //Updating
   update(updateUserDto: UpdateUserDto, userId: number) {
     return this.userRepository.update(userId, updateUserDto);
   }
-
-  // remove(userId: number) {
-  //   return {userId};
-  // }
-
-  // Fetching/retriving
-  show(userId: number){
-    return this.userRepository.findOne({where: {id : userId}});
+ async getUser(@Param()id:number){
+const fund = await this.userRepository.findOneById( id );
+return fund;
   }
   
   //Deleting
@@ -58,9 +44,22 @@ export class UserService {
     return this.userRepository.delete(userId);
     
   }
+  //Creating account for the user
+  createAccount(@Body() accountDto: AccountDto){
+return this.accountRepository.save(accountDto);
+  }
 
-  // getOne(@Param('userId')userId: number):Promise<User>{ 
-  //   return this.userRepository.findOneById(userId); 
-  // }
+
+// a User logging in
+  async login(@Body()body:Login){
+    const log = await this.accountRepository.findOne({where: {...body}})
+    if(!log){
+
+      console.log("Account not found!!!!!");
+    }
+    else{
+      return "Welcome to quick bite foods ";
+    }
+  }
 
 }

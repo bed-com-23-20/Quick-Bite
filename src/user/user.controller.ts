@@ -2,30 +2,26 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from 
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { request } from 'express';
+import { User } from 'src/user/entities/user.entity';
+import { AccountDto } from './dto/account.dto';
+import { Login } from './dto/login.dto';
 
-@Controller('user')
+@Controller('/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  store(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  @Post('/postFood')
+  storeFood(@Body() createUserDto: CreateUserDto) {
+    return this.userService.storeFood(createUserDto);
   }
-
-  // @Get()
-  // findAll() {
-  //   return this.userService.findAll();
-  // }
 
   @Get()
   getUsers(){
     return this.userService.get();
   }
-  // findOne(@Param('id') id: number) {
-  //   return this.userService.findOne(+id);
-  // }
 
-  @Patch('/:userId')
+ @Patch('/:userId')
   update(
     @Body() updateUserDto: UpdateUserDto,
     @Param('userId', ParseIntPipe) userId: number, 
@@ -33,8 +29,23 @@ export class UserController {
     return this.userService.update(updateUserDto, userId);
 }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.delete(+id);
+  @Delete('/delete/:id')
+  remove(@Param('id') id: number) {
+    return this.userService.delete(id);
   }
+
+  @Get('/findItem/:id')
+  getUser(@Param()id:number){
+    return this.userService.getUser(id);
+  }
+@Post('/createAccount')
+createAccount(@Body() accountDto: AccountDto){
+
+  return this.userService.createAccount(accountDto);
+}
+@Post('/login')
+login(@Body()Body:Login){
+  return this.userService.login(Body);
+}
+  
 }
