@@ -7,6 +7,8 @@ import { Repository } from 'typeorm';
 import { Account } from './entities/accountEntity';
 import { AccountDto } from './dto/account.dto';
 import { Login } from './dto/login.dto';
+import { Ordertable } from './entities/ordertable.entity';
+import { OrderDto } from './dto/order.dto';
 
 @Injectable()
 export class UserService {
@@ -15,6 +17,8 @@ export class UserService {
     private userRepository: Repository<User>,
     @InjectRepository(Account)
     private accountRepository: Repository<Account>,
+    @InjectRepository(Ordertable)
+    private orderRepository: Repository<Ordertable>,
   ){}
 
 storeFood(@Body() createUserDto: CreateUserDto) {
@@ -23,19 +27,14 @@ storeFood(@Body() createUserDto: CreateUserDto) {
   get():Promise<User[]>{ 
     return this.userRepository.find(); 
   }
-  
- 
-  /*findOne(userId: number): Promise<User> {
-    return this.userRepository.findOneById( userId );
-  }*/
 
   //Updating
   update(updateUserDto: UpdateUserDto, userId: number) {
     return this.userRepository.update(userId, updateUserDto);
   }
  async getUser(@Param()id:number){
-const fund = await this.userRepository.findOneById( id );
-return fund;
+const found = await this.userRepository.findOneById( id );
+return found;
   }
   
   //Deleting
@@ -60,6 +59,16 @@ return this.accountRepository.save(accountDto);
     else{
       return "Welcome to quick bite foods ";
     }
+  }
+
+  
+  async orders(userId: number,accountId: number){
+const found = await this.userRepository.findOneById(userId);
+if(!found){
+return "Not found";
+}
+const ordeName = this.orderRepository.create( {...found},{ dateOrdered: new Date()});
+return this.orderRepository.save(ordeName);
   }
 
 }

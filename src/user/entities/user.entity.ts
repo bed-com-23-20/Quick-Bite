@@ -12,7 +12,7 @@ export class User {
     productPrice: string;
 
     @Column()
-    available: string;
+    available: boolean;
 
     @Column()
     expireDate: Date;

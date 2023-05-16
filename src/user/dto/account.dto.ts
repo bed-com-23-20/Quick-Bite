@@ -13,6 +13,4 @@ datecreated: Date;
 
 password: number;
 
-
-
 }

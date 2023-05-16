@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+import { type } from 'os';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Ordertable } from './ordertable.entity';
 @Entity()
 export class Account{
 
@@ -26,5 +29,8 @@ datecreated: Date;
 
 @Column()
 password: number;
+
+@OneToMany((type)=>Ordertable,(orders)=>orders.account)
+orders : Ordertable[]; 
 
 } 
