@@ -1,3 +1,4 @@
+import { IsNumberString, IsString } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -6,9 +7,11 @@ export class User {
     id: number;
 
     @Column()
+    @IsString()
     productName: string;
 
     @Column()
+    @IsNumberString()
     productPrice: string;
 
     @Column()

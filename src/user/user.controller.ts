@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -12,6 +12,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('/postFood')
+  @UsePipes(new ValidationPipe())
   storeFood(@Body() createUserDto: CreateUserDto) {
     return this.userService.storeFood(createUserDto);
   }
@@ -47,5 +48,10 @@ createAccount(@Body() accountDto: AccountDto){
 login(@Body()Body:Login){
   return this.userService.login(Body);
 }
+
+// @Post('/bookproduct')
+// book(userId: number,accountId: number){
+//   return this.userService.orders(orderName);
+// }
   
 }

@@ -54,20 +54,20 @@ return this.accountRepository.save(accountDto);
     const log = await this.accountRepository.findOne({where: {...body}})
     if(!log){
 
-      console.log("Account not found!!!!!");
+      console.log("Account not found!");
     }
     else{
-      return "Welcome to quick bite foods ";
+      return "Welcome to quick bite foods";
     }
   }
 
-  
+
   async orders(userId: number,accountId: number){
 const found = await this.userRepository.findOneById(userId);
 if(!found){
 return "Not found";
 }
-const ordeName = this.orderRepository.create( {...found},{ dateOrdered: new Date()});
+const ordeName = this.orderRepository.create( {...found},);
 return this.orderRepository.save(ordeName);
   }
 
