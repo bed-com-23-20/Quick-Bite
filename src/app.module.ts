@@ -4,6 +4,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Account } from './user/entities/accountEntity';
 import { Ordertable } from './user/entities/ordertable.entity';
+import { CommentTable } from './user/entities/comment.entity';
 
 
 
@@ -15,7 +16,7 @@ import { Ordertable } from './user/entities/ordertable.entity';
     username: 'root',
     password: '',
     database: 'quickbitefoods',
-    entities: [User, Account,Ordertable],
+    entities: [User, Account,Ordertable, CommentTable],
     synchronize: true,
 
   }),UserModule],

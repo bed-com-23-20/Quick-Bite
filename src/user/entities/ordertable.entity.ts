@@ -23,5 +23,7 @@ export class Ordertable{
 
     @ManyToOne((type)=>Account,(accounts)=>accounts.orders)
 
+    @JoinColumn()
 account: Account;
+  orderName: import("d:/Proj/Quick-Bite-FoodS-Nest/quick-bite-foods/src/user/entities/user.entity").User;
 }

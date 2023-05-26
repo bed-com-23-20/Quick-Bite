@@ -10,7 +10,7 @@ async function bootstrap() {
   }));
 
   const config = new DocumentBuilder()
-  .setTitle('Quick Bote Foods')
+  .setTitle('Quick Bite Foods')
   .setDescription('Online food shopping web')
   .setVersion('1.0')
   .addTag('')

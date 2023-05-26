@@ -6,6 +6,8 @@ import { request } from 'express';
 import { User } from 'src/user/entities/user.entity';
 import { AccountDto } from './dto/account.dto';
 import { Login } from './dto/login.dto';
+import { CommentDto } from './dto/comment.dto';
+import { OrderDto } from './dto/order.dto';
 
 @Controller('/user')
 export class UserController {
@@ -49,9 +51,15 @@ login(@Body()Body:Login){
   return this.userService.login(Body);
 }
 
-// @Post('/bookproduct')
-// book(userId: number,accountId: number){
-//   return this.userService.orders(orderName);
-// }
+@Post('/comment/:id')
+comments(@Param('id')id:number,@Body('body')body: CommentDto){
+  return this.userService.comments(id,body);
+}
+
+@Post('/bookproduct/:id')
+book(@Param('id')id:number,@Body('body')body: OrderDto){
+  return this.userService.orders(id,body);
+}
+
   
 }

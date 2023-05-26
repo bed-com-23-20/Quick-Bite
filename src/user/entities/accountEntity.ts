@@ -1,8 +1,9 @@
 
 import { type } from 'os';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Ordertable } from './ordertable.entity';
 import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { CommentTable } from './comment.entity';
 @Entity()
 export class Account{
 
@@ -37,6 +38,10 @@ datecreated: Date;
 password: number;
 
 @OneToMany((type)=>Ordertable,(orders)=>orders.account)
+
 orders : Ordertable[]; 
 
+@OneToMany((type)=> CommentTable,(commenttable) =>commenttable.account)
+
+commenttables: CommentTable[];
 } 

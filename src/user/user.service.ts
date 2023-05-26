@@ -9,6 +9,8 @@ import { AccountDto } from './dto/account.dto';
 import { Login } from './dto/login.dto';
 import { Ordertable } from './entities/ordertable.entity';
 import { OrderDto } from './dto/order.dto';
+import { CommentDto } from './dto/comment.dto';
+import { CommentTable } from './entities/comment.entity';
 
 @Injectable()
 export class UserService {
@@ -19,6 +21,8 @@ export class UserService {
     private accountRepository: Repository<Account>,
     @InjectRepository(Ordertable)
     private orderRepository: Repository<Ordertable>,
+    @InjectRepository(CommentTable)
+    private commentsRepository: Repository<CommentTable>,
   ){}
 
 storeFood(@Body() createUserDto: CreateUserDto) {
@@ -61,14 +65,30 @@ return this.accountRepository.save(accountDto);
     }
   }
 
-
-  async orders(userId: number,accountId: number){
-const found = await this.userRepository.findOneById(userId);
+//USer booking/ordering the product
+  async orders(accountId: number, body: OrderDto){
+const found = await this.userRepository.findOneById(accountId);
 if(!found){
 return "Not found";
 }
-const ordeName = this.orderRepository.create( {...found},);
-return this.orderRepository.save(ordeName);
+const orderName = this.orderRepository.create( {...body});
+//orderName.account = found;
+return this.orderRepository.save(orderName);
+  }
+
+
+//User Copmment on the product.
+ async comments(accountId:number,body:CommentDto){
+const findUser= await this.accountRepository.findOneById(accountId)
+if(!findUser){
+  console.log(" not found")
+
+}
+const create= this.commentsRepository.create({...body})
+
+   create.account=findUser;
+
+   return this.commentsRepository.save(create);
   }
 
 }
