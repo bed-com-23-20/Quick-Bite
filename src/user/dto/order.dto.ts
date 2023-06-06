@@ -7,8 +7,8 @@ export class OrderDto{
     productPrice: string;
 
   
-    available: boolean;
+    // available: boolean;
 
   
-    expireDate: Date;
+    // expireDate: Date;
 }

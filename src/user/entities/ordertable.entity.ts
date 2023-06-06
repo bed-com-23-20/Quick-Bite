@@ -1,6 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity,OneToOne, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Account } from "./accountEntity";
 import { IsNumberString, IsString } from "class-validator";
+import { User } from "./user.entity";
 
 @Entity()
 export class Ordertable{
@@ -15,15 +16,18 @@ export class Ordertable{
     @IsNumberString()
     productPrice: string;
 
-    @Column()
-    available: boolean;
+    // @Column()
+    // available: boolean;
 
-    @Column()
-    expireDate: Date;
+    // @Column()
+    // expireDate: Date;
 
     @ManyToOne((type)=>Account,(accounts)=>accounts.orders)
+    account: Account;
 
+    @OneToOne(() => User,(users)=>users.orders)
     @JoinColumn()
-account: Account;
-  orderName: import("d:/Proj/Quick-Bite-FoodS-Nest/quick-bite-foods/src/user/entities/user.entity").User;
+    user:User;
+    
+    
 }

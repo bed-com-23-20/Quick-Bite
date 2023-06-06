@@ -1,5 +1,6 @@
-import { IsNumberString, IsString } from "class-validator";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { IsBoolean, IsDate, IsNumberString, IsString } from "class-validator";
+import { Column, JoinColumn, Entity, OneToMany, PrimaryGeneratedColumn, OneToOne } from "typeorm";
+import { Ordertable } from "./ordertable.entity";
 import { CommentTable } from "./comment.entity";
 
 @Entity()
@@ -12,17 +13,19 @@ export class User {
     productName: string;
 
     @Column()
-    @IsNumberString()
+    @IsString()
     productPrice: string;
 
-    @Column()
-    available: boolean;
+    // @Column()
+    // @IsBoolean()
+    // available: boolean;
+    
+//     @Column()
+//    // @IsDate()
+//     expireDate: Date;
 
-    @Column()
-    expireDate: Date;
+    @OneToOne(() => Ordertable,(ordertables)=>ordertables.user)
+    orders: Ordertable[];
 
-
-   // @OneToMany((type)=> CommentTable,(commenttable) =>commenttable.account);
-
-
+    
 }

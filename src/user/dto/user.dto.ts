@@ -1,4 +1,4 @@
-import { IsNumberString, IsString } from "class-validator";
+import { IsBoolean, IsDate, IsNumberString, IsString } from "class-validator";
 
 export class UserDto{
    
@@ -6,12 +6,12 @@ export class UserDto{
     productName: string;
 
     
-    @IsNumberString()
+    @IsString()
     productPrice: string;
 
-  
+    @IsBoolean()
     available: boolean;
 
-  
+    //@IsDate()
     expireDate: Date;
 }

@@ -8,6 +8,8 @@ import { AccountDto } from './dto/account.dto';
 import { Login } from './dto/login.dto';
 import { CommentDto } from './dto/comment.dto';
 import { OrderDto } from './dto/order.dto';
+import { Ordertable } from './entities/ordertable.entity';
+import { UserDto } from './dto/user.dto';
 
 @Controller('/user')
 export class UserController {
@@ -15,7 +17,7 @@ export class UserController {
 
   @Post('/postFood')
   @UsePipes(new ValidationPipe())
-  storeFood(@Body() createUserDto: CreateUserDto) {
+  storeFood(@Body() createUserDto: UserDto) {
     return this.userService.storeFood(createUserDto);
   }
 
@@ -26,8 +28,8 @@ export class UserController {
 
  @Patch('/:userId')
   update(
-    @Body() updateUserDto: UpdateUserDto,
-    @Param('userId', ParseIntPipe) userId: number, 
+    @Body() updateUserDto: UserDto,
+    @Param('userId', ParseIntPipe) userId: any 
   ){
     return this.userService.update(updateUserDto, userId);
 }
@@ -56,9 +58,13 @@ comments(@Param('id')id:number,@Body('body')body: CommentDto){
   return this.userService.comments(id,body);
 }
 
-@Post('/bookproduct/:id')
-book(@Param('id')id:number,@Body('body')body: OrderDto){
-  return this.userService.orders(id,body);
+@Post('/bookproduct/:Aid/:Uid')
+booking(
+  @Param('Aid') Aid:number,
+  @Param('Uid') Uid: number,
+  @Body() body:OrderDto,
+): Promise  <Ordertable>{
+  return this.userService.creatOrder(Aid, Uid,body);
 }
 
   
