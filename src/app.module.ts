@@ -11,13 +11,13 @@ import { CommentTable } from './user/entities/comment.entity';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'localhost',
+    host: 'sql10.freesqldatabase.com',
     port: 3306,
-    username: 'root',
-    password: '',
+    username: 'sql10624838',
+    password: ' L3vFgf21Gj',
     database: 'quickbitefoods',
     entities: [User, Account,Ordertable, CommentTable],
-    synchronize: true,
+    synchronize: false,
 
   }),UserModule],
   controllers: [],
