@@ -15,7 +15,7 @@ import { CommentTable } from './user/entities/comment.entity';
     port: 3306,
     username: 'sql10624838',
     password: ' L3vFgf21Gj',
-    database: 'quickbitefoods',
+    database: 'sql10624838',
     entities: [User, Account,Ordertable, CommentTable],
     synchronize: false,
 
