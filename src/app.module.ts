@@ -13,9 +13,9 @@ import { CommentTable } from './user/entities/comment.entity';
     type: 'mysql',
     host: 'sql10.freesqldatabase.com',
     port: 3306,
-    username: 'sql10627017',
-    password: '2ELJ2yh8Jn',  
-    database: 'sql10627017',
+    username: 'sql10629473',
+    password: 'VTnLDZAXXt',  
+    database: 'sql10629473',
     entities: [User, Account,Ordertable, CommentTable],
     synchronize: true,
 
