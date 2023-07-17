@@ -13,7 +13,7 @@ import { CommentTable } from './user/entities/comment.entity';
     type: 'mysql',
     host: 'sql10.freesqldatabase.com',
     port: 3306,
-    username: 'sql9633272',
+    username: 'sql9633272',// new database name
     password: 'sql9633272',  
     database: '2EtKM3JSai', // new pass word
     entities: [User, Account,Ordertable, CommentTable],
