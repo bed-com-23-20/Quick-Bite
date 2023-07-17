@@ -15,7 +15,7 @@ import { CommentTable } from './user/entities/comment.entity';
     port: 3306,
     username: 'sql9633272',
     password: 'sql9633272',  
-    database: '2EtKM3JSai',
+    database: '2EtKM3JSai', // new pass word
     entities: [User, Account,Ordertable, CommentTable],
     synchronize: true,
 
