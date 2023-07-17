@@ -11,7 +11,7 @@ import { CommentTable } from './user/entities/comment.entity';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'sql10.freesqldatabase.com',
+    host: ' sql9.freesqldatabase.com',//sql10.freesqldatabase.com
     port: 3306,
     username: 'sql9633272',// new database name
     password: '2EtKM3JSai',  
